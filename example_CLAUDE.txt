@@ -1,0 +1,188 @@
+(.venv) user@user-Standard-PC-i440FX-PIIX-1996:~/Documents/vxlan-analysis$   python interface_aiv2.py --provider claude --model claude-sonnet-4-20250514 --delay 15
+Juniper Fabric Analysis Tool with AI
+Analyzing 5 switches in fabric
+AI Provider: CLAUDE
+
+Using Claude model: claude-sonnet-4-20250514
+
+Collecting data from 5 switches in fabric...
+
+Collecting data from 172.29.129.189...
+Collecting data from 172.29.129.124...
+Collecting data from 172.29.129.59...
+Collecting data from 172.29.129.247...
+Collecting data from 172.29.129.182...
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ System information
+  ✓ System information
+  ✓ System information
+  ✓ System information
+  ✓ System information
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ LLDP neighbors
+  ✓ LLDP neighbors
+  ✓ LLDP neighbors
+  ✓ LLDP neighbors
+  ✓ LLDP neighbors
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  Collecting fabric data...
+
+Saving raw fabric data to fabric_data_20251022_154538.json...
+✓ Raw data saved!
+
+Step 1: Analyzing individual switches...
+  → Analyzing 172.29.129.189...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.124...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.59...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.182...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.247...
+
+Step 2: Analyzing fabric topology and health...
+Performing fabric-level analysis...
+✓ Fabric analysis complete!
+
+Saving analysis to fabric_analysis_claude_20251022_154538.json...
+✓ Analysis saved!
+
+Fabric Analysis Results:
+
+
+                                                         Fabric Summary
+╔═══════════════════════════╦══════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Metric                    ║ Value                                                                                            ║
+╠═══════════════════════════╬══════════════════════════════════════════════════════════════════════════════════════════════════╣
+║ Total Switches            ║ 5                                                                                                ║
+║ Topology Type             ║ spine-leaf                                                                                       ║
+║ Health Score              ║ 65/100                                                                                           ║
+║ Health Status             ║ Fabric has good physical connectivity and BGP underlay, but VXLAN/EVPN overlay is not functional ║
+║ Spine Switches            ║ 172.29.129.189, 172.29.129.124                                                                   ║
+║ Leaf Switches             ║ 172.29.129.59, 172.29.129.182, 172.29.129.247                                                    ║
+╚═══════════════════════════╩══════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+
+                                                Switch Details
+╭─────────────────┬─────────────────┬────────────┬─────────────────┬──────────────┬──────────────┬────────────╮
+│ IP              │ Hostname        │ Role       │ Version         │  Interfaces  │  BGP Peers   │   VXLAN    │
+├─────────────────┼─────────────────┼────────────┼─────────────────┼──────────────┼──────────────┼────────────┤
+│ 172.29.129.189  │ spine-1         │ spine      │ 25.2R1.9        │     3/3      │     3/3      │     0      │
+│ 172.29.129.124  │ spine-2         │ spine      │ 25.2R1.9        │     3/3      │     3/3      │     0      │
+│ 172.29.129.59   │ leaf-1          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.182  │ leaf-3          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.247  │ leaf-2          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+╰─────────────────┴─────────────────┴────────────┴─────────────────┴──────────────┴──────────────┴────────────╯
+
+
+                                      BGP Sessions Per Switch
+╭─────────────────┬─────────────────┬────────────┬──────────┬──────────────┬──────────┬────────────╮
+│ Switch          │ Hostname        │ Role       │  Total   │ Established  │   Down   │   Status   │
+├─────────────────┼─────────────────┼────────────┼──────────┼──────────────┼──────────┼────────────┤
+│ 172.29.129.189  │ spine-1         │ spine      │    3     │      3       │    0     │  ✓ All Up  │
+│ 172.29.129.124  │ spine-2         │ spine      │    3     │      3       │    0     │  ✓ All Up  │
+│ 172.29.129.59   │ leaf-1          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.182  │ leaf-3          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.247  │ leaf-2          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+╰─────────────────┴─────────────────┴────────────┴──────────┴──────────────┴──────────┴────────────╯
+
+
+         BGP Fabric Summary
+╭───────────────────────────┬───────╮
+│ Metric                    │ Value │
+├───────────────────────────┼───────┤
+│ Total BGP Sessions        │ 10    │
+│ Established Sessions      │ 10    │
+│ Underlay Peers            │ 10    │
+│ Overlay Peers             │ 0     │
+╰───────────────────────────┴───────╯
+
+
+         VXLAN Fabric Status
+╭───────────────────────────┬───────╮
+│ Metric                    │ Value │
+├───────────────────────────┼───────┤
+│ Total VTEPs               │ 0     │
+│ Expected Tunnels          │ 6     │
+│ Actual Tunnels            │ 0     │
+│ Missing Tunnels           │ 6     │
+╰───────────────────────────┴───────╯
+
+
+            EVPN Fabric Status
+╭───────────────────────────┬────────────╮
+│ Metric                    │ Value      │
+├───────────────────────────┼────────────┤
+│ Total VNIs                │ 0          │
+│ VNI List                  │            │
+│ VNI Consistency           │ consistent │
+│ Total MAC Routes          │ 0          │
+╰───────────────────────────┴────────────╯
+
+
+                                                     ⚠️  Fabric Issues
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Severity   ┃ Category     ┃ Switch          ┃ Description                         ┃ Recommendation                      ┃
+┣━━━━━━━━━━━━╋━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ CRITICAL   ┃ vxlan        ┃ all             ┃ VXLAN configuration is completely   ┃ Review and fix VXLAN configuration  ┃
+┃            ┃              ┃                 ┃ non-functional across all switches  ┃ syntax on all switches              ┃
+┃ CRITICAL   ┃ evpn         ┃ all             ┃ EVPN database is empty on all       ┃ Configure EVPN instances and VNIs   ┃
+┃            ┃              ┃                 ┃ switches                            ┃ after fixing VXLAN issues           ┃
+┃ WARNING    ┃ configurati… ┃ all             ┃ VXLAN tunnel commands failing with  ┃ Validate VXLAN configuration syntax ┃
+┃            ┃              ┃                 ┃ syntax errors                       ┃ and ensure proper VTEP              ┃
+┃            ┃              ┃                 ┃                                     ┃ configuration                       ┃
+┃ WARNING    ┃ bgp          ┃ all             ┃ No BGP EVPN address family sessions ┃ Configure BGP EVPN address family   ┃
+┃            ┃              ┃                 ┃ detected                            ┃ on all spine-leaf peerings          ┃
+┗━━━━━━━━━━━━┻━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+                                                  💡 Recommendations
+╭────────────┬─────────────────┬───────────────────────────────────────────────┬─────────────────────────────────────╮
+│ Priority   │ Category        │ Description                                   │ Expected Benefit                    │
+├────────────┼─────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────┤
+│ HIGH       │ overlay_config… │ Fix VXLAN configuration syntax errors and     │ Enable overlay network              │
+│            │                 │ establish proper VTEP functionality           │ functionality and inter-leaf        │
+│            │                 │                                               │ communication                       │
+│ HIGH       │ evpn_configura… │ Configure EVPN instances, VNIs, and BGP EVPN  │ Enable MAC learning, IP mobility,   │
+│            │                 │ address family                                │ and multi-tenancy capabilities      │
+│ MEDIUM     │ bgp_optimizati… │ Add BGP EVPN address family to existing       │ Enable EVPN route exchange for      │
+│            │                 │ spine-leaf BGP sessions                       │ overlay services                    │
+│ MEDIUM     │ monitoring      │ Implement proper VXLAN and EVPN monitoring    │ Early detection of overlay network  │
+│            │                 │ and alerting                                  │ issues and faster troubleshooting   │
+│ LOW        │ documentation   │ Document the current underlay configuration   │ Better operational visibility and   │
+│            │                 │ and plan overlay deployment                   │ change management                   │
+╰────────────┴─────────────────┴───────────────────────────────────────────────┴─────────────────────────────────────╯
+
+✓ Analysis complete!
+AI Provider: CLAUDE
+Raw data: fabric_data_20251022_154538.json
+Analysis: fabric_analysis_claude_20251022_154538.json
+(.venv) user@user-Standard-PC-i440FX-PIIX-1996:~/Documents/vxlan-analysis$

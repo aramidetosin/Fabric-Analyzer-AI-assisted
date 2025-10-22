@@ -1,0 +1,46 @@
+# Ignore everything by default
+*
+
+# Re-allow directories so we can unignore specific files inside them
+!*/
+
+# Keep Python source files (any depth)
+!*.py
+!**/*.py
+
+# Keep the example run outputs you want to commit
+!example_*.txt
+
+# Keep common repo metadata
+!.gitignore
+!.gitattributes
+!README.md
+!LICENSE
+
+# STILL ignore Python build/caches even if matched above
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.dist-info/
+build/
+dist/
+.eggs/
+
+# Envs & secrets
+.venv/
+venv/
+.env
+.env.*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Generated artifacts from this project
+fabric_*.json
+*.json
+*.log

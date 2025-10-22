@@ -1,0 +1,209 @@
+(.venv) user@user-Standard-PC-i440FX-PIIX-1996:~/Documents/vxlan-analysis$   python interface_aiv2.py --provider ollama --ollama-host http://192.168.1.100:11434 --model gpt-oss:120b --delay 15
+Juniper Fabric Analysis Tool with AI
+Analyzing 5 switches in fabric
+AI Provider: OLLAMA
+
+Using Ollama model: gpt-oss:120b
+Ollama host: http://192.168.1.100:11434
+✓ Connected to Ollama
+Available models: gpt-oss:120b, llama3.3:latest
+
+Collecting data from 5 switches in fabric...
+
+Collecting data from 172.29.129.189...
+Collecting data from 172.29.129.124...
+Collecting data from 172.29.129.59...
+Collecting data from 172.29.129.247...
+Collecting data from 172.29.129.182...
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ Route summary
+  ✓ BGP summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ System information
+  ✓ Route summary
+  ✓ System information
+  ✓ Route summary
+  ✓ System information
+  ✓ VXLAN tunnel endpoints
+  ✓ System information
+  ✓ System information
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ EVPN database
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ LLDP neighbors
+  ✓ EVPN database
+  ✓ LLDP neighbors
+  ✓ EVPN database
+  ✓ LLDP neighbors
+  ✓ LACP interfaces
+  ✓ LLDP neighbors
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  ✓ LLDP neighbors
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  Collecting fabric data...
+
+Saving raw fabric data to fabric_data_20251022_154019.json...
+✓ Raw data saved!
+
+Step 1: Analyzing individual switches...
+  → Analyzing 172.29.129.182...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.247...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.59...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.124...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.189...
+
+Step 2: Analyzing fabric topology and health...
+Performing fabric-level analysis...
+✓ Fabric analysis complete!
+
+Saving analysis to fabric_analysis_ollama_20251022_154019.json...
+✓ Analysis saved!
+
+Fabric Analysis Results:
+
+
+                                                                              Fabric Summary
+╔═══════════════════════════╦═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Metric                    ║ Value                                                                                                                                       ║
+╠═══════════════════════════╬═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
+║ Total Switches            ║ 6                                                                                                                                           ║
+║ Topology Type             ║ spine-leaf                                                                                                                                  ║
+║ Health Score              ║ 70/100                                                                                                                                      ║
+║ Health Status             ║ All interfaces are up and every BGP session is established, but VXLAN and EVPN are not operational (syntax‑error failures on tunnel         ║
+║                           ║ queries) and LACP daemons are absent. The fabric is functional at the underlay level but overlay services are unavailable.                  ║
+║ Spine Switches            ║ 172.29.129.189, 172.29.129.124                                                                                                              ║
+║ Leaf Switches             ║ 172.29.129.59, 172.29.129.247, 172.29.129.182                                                                                               ║
+╚═══════════════════════════╩═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+
+                                                Switch Details
+╭─────────────────┬─────────────────┬────────────┬─────────────────┬──────────────┬──────────────┬────────────╮
+│ IP              │ Hostname        │ Role       │ Version         │  Interfaces  │  BGP Peers   │   VXLAN    │
+├─────────────────┼─────────────────┼────────────┼─────────────────┼──────────────┼──────────────┼────────────┤
+│ 172.29.129.182  │ leaf-3          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.247  │ leaf-2          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.59   │ leaf-1          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.124  │ spine-2         │ spine      │ 25.2R1.9        │     3/3      │     3/3      │     0      │
+│ 172.29.129.189  │ spine-1         │ spine      │ 25.2R1.9        │     3/3      │     3/3      │     0      │
+╰─────────────────┴─────────────────┴────────────┴─────────────────┴──────────────┴──────────────┴────────────╯
+
+
+                                      BGP Sessions Per Switch
+╭─────────────────┬─────────────────┬────────────┬──────────┬──────────────┬──────────┬────────────╮
+│ Switch          │ Hostname        │ Role       │  Total   │ Established  │   Down   │   Status   │
+├─────────────────┼─────────────────┼────────────┼──────────┼──────────────┼──────────┼────────────┤
+│ 172.29.129.182  │ leaf-3          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.247  │ leaf-2          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.59   │ leaf-1          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.124  │ spine-2         │ spine      │    3     │      3       │    0     │  ✓ All Up  │
+│ 172.29.129.189  │ spine-1         │ spine      │    3     │      3       │    0     │  ✓ All Up  │
+╰─────────────────┴─────────────────┴────────────┴──────────┴──────────────┴──────────┴────────────╯
+
+
+         BGP Fabric Summary
+╭───────────────────────────┬───────╮
+│ Metric                    │ Value │
+├───────────────────────────┼───────┤
+│ Total BGP Sessions        │ 12    │
+│ Established Sessions      │ 12    │
+│ Underlay Peers            │ 12    │
+│ Overlay Peers             │ 0     │
+╰───────────────────────────┴───────╯
+
+
+         VXLAN Fabric Status
+╭───────────────────────────┬───────╮
+│ Metric                    │ Value │
+├───────────────────────────┼───────┤
+│ Total VTEPs               │ 0     │
+│ Expected Tunnels          │ 0     │
+│ Actual Tunnels            │ 0     │
+╰───────────────────────────┴───────╯
+
+
+            EVPN Fabric Status
+╭───────────────────────────┬────────────╮
+│ Metric                    │ Value      │
+├───────────────────────────┼────────────┤
+│ Total VNIs                │ 0          │
+│ VNI List                  │            │
+│ VNI Consistency           │ consistent │
+│ Total MAC Routes          │ 0          │
+╰───────────────────────────┴────────────╯
+
+
+                                                     ⚠️  Fabric Issues
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Severity   ┃ Category     ┃ Switch          ┃ Description                         ┃ Recommendation                      ┃
+┣━━━━━━━━━━━━╋━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ WARNING    ┃ vxlan        ┃ 172.29.129.182  ┃ VXLAN tunnel query failed: syntax   ┃ Verify VXLAN configuration syntax   ┃
+┃            ┃              ┃                 ┃ error                               ┃ and enable the VTEP feature.        ┃
+┃ WARNING    ┃ interface    ┃ 172.29.129.182  ┃ LACP subsystem not running – not    ┃ If LACP is intended for future use, ┃
+┃            ┃              ┃                 ┃ needed by configuration             ┃ enable the lacp daemon; otherwise   ┃
+┃            ┃              ┃                 ┃                                     ┃ ignore.                             ┃
+┃ WARNING    ┃ vxlan        ┃ 172.29.129.247  ┃ VXLAN tunnel information retrieval  ┃ Verify VXLAN configuration syntax   ┃
+┃            ┃              ┃                 ┃ failed: syntax error                ┃ and enable the VTEP feature.        ┃
+┃ WARNING    ┃ interface    ┃ 172.29.129.247  ┃ LACP subsystem not running – not    ┃ Enable lacp daemon only if          ┃
+┃            ┃              ┃                 ┃ needed by configuration.            ┃ required.                           ┃
+┃ WARNING    ┃ vxlan        ┃ 172.29.129.59   ┃ VXLAN tunnel command returned       ┃ Verify VXLAN configuration syntax   ┃
+┃            ┃              ┃                 ┃ syntax error.                       ┃ and enable the VTEP feature.        ┃
+┃ WARNING    ┃ interface    ┃ 172.29.129.59   ┃ LACP subsystem not running – not    ┃ Enable lacp daemon only if          ┃
+┃            ┃              ┃                 ┃ needed by configuration.            ┃ required.                           ┃
+┃ WARNING    ┃ vxlan        ┃ 172.29.129.124  ┃ VXLAN tunnel endpoint query failed  ┃ Verify VXLAN configuration syntax   ┃
+┃            ┃              ┃                 ┃ – syntax error returned by the      ┃ and enable the VTEP feature.        ┃
+┃            ┃              ┃                 ┃ device.                             ┃                                     ┃
+┃ WARNING    ┃ interface    ┃ 172.29.129.124  ┃ LACP subsystem not running – not    ┃ Enable lacp daemon only if          ┃
+┃            ┃              ┃                 ┃ needed by configuration (daemon not ┃ required.                           ┃
+┃            ┃              ┃                 ┃ configured).                        ┃                                     ┃
+┃ WARNING    ┃ vxlan        ┃ 172.29.129.189  ┃ VXLAN tunnel endpoint information   ┃ Verify VXLAN configuration syntax   ┃
+┃            ┃              ┃                 ┃ command failed: syntax error        ┃ and enable the VTEP feature.        ┃
+┃ INFO       ┃ interface    ┃ 172.29.129.189  ┃ LACP subsystem not running - not    ┃ Enable lacp daemon only if          ┃
+┃            ┃              ┃                 ┃ needed by configuration.            ┃ required.                           ┃
+┗━━━━━━━━━━━━┻━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+                                                  💡 Recommendations
+╭────────────┬─────────────────┬───────────────────────────────────────────────┬─────────────────────────────────────╮
+│ Priority   │ Category        │ Description                                   │ Expected Benefit                    │
+├────────────┼─────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────┤
+│ HIGH       │ vxlan           │ Deploy and correctly configure VTEP on all    │ Enables overlay network, provides   │
+│            │                 │ spine and leaf switches; ensure the VXLAN     │ VM mobility and multi‑tenant        │
+│            │                 │ tunnel commands match the Junos version       │ segmentation.                       │
+│            │                 │ syntax.                                       │                                     │
+│ HIGH       │ evpn            │ Configure EVPN instances (VNI, bridge         │ Provides control‑plane for MAC      │
+│            │                 │ domains, MAC/IP learning) once VXLAN is       │ distribution, reduces flooding, and │
+│            │                 │ operational.                                  │ supports multi‑tenant services.     │
+│ MEDIUM     │ interface       │ Enable the LACP daemon if link aggregation is │ Prevents future confusion and       │
+│            │                 │ planned; otherwise document that LACP is      │ ensures proper monitoring of LACP   │
+│            │                 │ intentionally disabled.                       │ status.                             │
+│ MEDIUM     │ monitoring      │ Add automated health checks for VXLAN tunnel  │ Early detection of overlay failures │
+│            │                 │ status and EVPN MAC route propagation.        │ before they impact workloads.       │
+│ LOW        │ documentation   │ Update network diagrams to reflect the        │ Improves operational clarity and    │
+│            │                 │ current spine‑leaf connections and annotate   │ aids troubleshooting.               │
+│            │                 │ that overlay services are pending.            │                                     │
+╰────────────┴─────────────────┴───────────────────────────────────────────────┴─────────────────────────────────────╯
+
+✓ Analysis complete!
+AI Provider: OLLAMA
+Raw data: fabric_data_20251022_154019.json
+Analysis: fabric_analysis_ollama_20251022_154019.json
+(.venv) user@user-Standard-PC-i440FX-PIIX-1996:~/Documents/vxlan-analysis$

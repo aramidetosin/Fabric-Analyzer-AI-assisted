@@ -1,0 +1,217 @@
+(.venv) user@user-Standard-PC-i440FX-PIIX-1996:~/Documents/vxlan-analysis$ python interface_aiv2.py --delay 15 --provider openai --model gpt-5
+Juniper Fabric Analysis Tool with AI
+Analyzing 5 switches in fabric
+AI Provider: OPENAI
+
+Using OpenAI model: gpt-5
+
+Collecting data from 5 switches in fabric...
+
+Collecting data from 172.29.129.124...
+Collecting data from 172.29.129.189...
+Collecting data from 172.29.129.59...
+Collecting data from 172.29.129.247...
+Collecting data from 172.29.129.182...
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ Interface information
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ BGP summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ Route summary
+  ✓ System information
+  ✓ Route summary
+  ✓ System information
+  ✓ System information
+  ✓ System information
+  ✓ VXLAN tunnel endpoints
+  ✓ System information
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ VXLAN tunnel endpoints
+  ✓ EVPN database
+  ✓ VXLAN tunnel endpoints
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ EVPN database
+  ✓ LLDP neighbors
+  ✓ EVPN database
+  ✓ LLDP neighbors
+  ✓ LLDP neighbors
+  ✓ LLDP neighbors
+  ✓ LACP interfaces
+  ✓ LLDP neighbors
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  ✓ LACP interfaces
+  Collecting fabric data...
+
+Saving raw fabric data to fabric_data_20251022_153943.json...
+✓ Raw data saved!
+
+Step 1: Analyzing individual switches...
+  → Analyzing 172.29.129.182...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.59...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.247...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.124...
+  ⏱  Waiting 15 seconds to avoid rate limits...
+  → Analyzing 172.29.129.189...
+
+Step 2: Analyzing fabric topology and health...
+Performing fabric-level analysis...
+✓ Fabric analysis complete!
+
+Saving analysis to fabric_analysis_openai_20251022_153943.json...
+✓ Analysis saved!
+
+Fabric Analysis Results:
+
+
+                                                        Fabric Summary
+╔═══════════════════════════╦═════════════════════════════════════════════════════════════════════════════════════════════════╗
+║ Metric                    ║ Value                                                                                           ║
+╠═══════════════════════════╬═════════════════════════════════════════════════════════════════════════════════════════════════╣
+║ Total Switches            ║ 5                                                                                               ║
+║ Topology Type             ║ spine-leaf                                                                                      ║
+║ Health Score              ║ 40/100                                                                                          ║
+║ Health Status             ║ Underlay spine-leaf fabric and BGP sessions are fully established and redundant. However, the   ║
+║                           ║ EVPN/VXLAN overlay is not present: no VTEPs, no VNIs, and empty EVPN databases across all       ║
+║                           ║ switches. Several recent uplink flaps noted. Overall, underlay healthy but overlay absent,      ║
+║                           ║ significantly reducing fabric health.                                                           ║
+║ Spine Switches            ║ 172.29.129.189, 172.29.129.124                                                                  ║
+║ Leaf Switches             ║ 172.29.129.59, 172.29.129.247, 172.29.129.182                                                   ║
+╚═══════════════════════════╩═════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+
+                                                Switch Details
+╭─────────────────┬─────────────────┬────────────┬─────────────────┬──────────────┬──────────────┬────────────╮
+│ IP              │ Hostname        │ Role       │ Version         │  Interfaces  │  BGP Peers   │   VXLAN    │
+├─────────────────┼─────────────────┼────────────┼─────────────────┼──────────────┼──────────────┼────────────┤
+│ 172.29.129.182  │ leaf-3          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.59   │ leaf-1          │ leaf       │ 25.2R1.9        │     3/3      │     2/2      │     0      │
+│ 172.29.129.247  │ leaf-2          │ leaf       │ 25.2R1.9        │     1/1      │     2/2      │     0      │
+│ 172.29.129.124  │ spine-2         │ spine      │ 25.2R1.9        │     3/3      │     3/3      │     0      │
+│ 172.29.129.189  │ spine-1         │ spine      │ 25.2R1.9        │     3/3      │     3/3      │     0      │
+╰─────────────────┴─────────────────┴────────────┴─────────────────┴──────────────┴──────────────┴────────────╯
+
+
+                                      BGP Sessions Per Switch
+╭─────────────────┬─────────────────┬────────────┬──────────┬──────────────┬──────────┬────────────╮
+│ Switch          │ Hostname        │ Role       │  Total   │ Established  │   Down   │   Status   │
+├─────────────────┼─────────────────┼────────────┼──────────┼──────────────┼──────────┼────────────┤
+│ 172.29.129.182  │ leaf-3          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.59   │ leaf-1          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.247  │ leaf-2          │ leaf       │    2     │      2       │    0     │  ✓ All Up  │
+│ 172.29.129.124  │ spine-2         │ spine      │    3     │      3       │    0     │  ✓ All Up  │
+│ 172.29.129.189  │ spine-1         │ spine      │    3     │      3       │    0     │  ✓ All Up  │
+╰─────────────────┴─────────────────┴────────────┴──────────┴──────────────┴──────────┴────────────╯
+
+
+         BGP Fabric Summary
+╭───────────────────────────┬───────╮
+│ Metric                    │ Value │
+├───────────────────────────┼───────┤
+│ Total BGP Sessions        │ 6     │
+│ Established Sessions      │ 6     │
+│ Underlay Peers            │ 6     │
+│ Overlay Peers             │ 0     │
+╰───────────────────────────┴───────╯
+
+
+         VXLAN Fabric Status
+╭───────────────────────────┬───────╮
+│ Metric                    │ Value │
+├───────────────────────────┼───────┤
+│ Total VTEPs               │ 0     │
+│ Expected Tunnels          │ 0     │
+│ Actual Tunnels            │ 0     │
+╰───────────────────────────┴───────╯
+
+
+            EVPN Fabric Status
+╭───────────────────────────┬────────────╮
+│ Metric                    │ Value      │
+├───────────────────────────┼────────────┤
+│ Total VNIs                │ 0          │
+│ VNI List                  │            │
+│ VNI Consistency           │ consistent │
+│ Total MAC Routes          │ 0          │
+╰───────────────────────────┴────────────╯
+
+
+                                                     ⚠️  Fabric Issues
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Severity   ┃ Category     ┃ Switch          ┃ Description                         ┃ Recommendation                      ┃
+┣━━━━━━━━━━━━╋━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ CRITICAL   ┃ evpn         ┃ all             ┃ EVPN overlay absent across the      ┃ Enable EVPN address family and      ┃
+┃            ┃              ┃                 ┃ fabric: no VNIs, no EVPN MAC/IP     ┃ VXLAN encapsulation on leaves (and  ┃
+┃            ┃              ┃                 ┃ routes, empty EVPN databases.       ┃ route-reflection on spines if       ┃
+┃            ┃              ┃                 ┃                                     ┃ used), define VNIs/VLAN mappings,   ┃
+┃            ┃              ┃                 ┃                                     ┃ route-distinguisher/targets, and    ┃
+┃            ┃              ┃                 ┃                                     ┃ VTEP source interfaces.             ┃
+┃ CRITICAL   ┃ vxlan        ┃ all             ┃ No VTEPs discovered; VXLAN tunnel   ┃ Verify platform support and correct ┃
+┃            ┃              ┃                 ┃ queries return syntax errors on all ┃ operational commands for Junos      ┃
+┃            ┃              ┃                 ┃ devices.                            ┃ 25.2R1.9, ensure VXLAN is           ┃
+┃            ┃              ┃                 ┃                                     ┃ licensed/enabled, and configure     ┃
+┃            ┃              ┃                 ┃                                     ┃ VTEP source (loopback) addressing   ┃
+┃            ┃              ┃                 ┃                                     ┃ and ingress-replication/irb         ┃
+┃            ┃              ┃                 ┃                                     ┃ settings as needed.                 ┃
+┃ WARNING    ┃ interface    ┃ all             ┃ Recent uplink flaps reported on     ┃ Review interface logs/counters and  ┃
+┃            ┃              ┃                 ┃ multiple leaf-to-spine links.       ┃ optics diagnostics; ensure proper   ┃
+┃            ┃              ┃                 ┃                                     ┃ LOS/LFI settings; monitor for       ┃
+┃            ┃              ┃                 ┃                                     ┃ recurrence.                         ┃
+┃ INFO       ┃ bgp          ┃ all             ┃ Only underlay BGP sessions are      ┃ Stand up EVPN AFI/SAFI sessions     ┃
+┃            ┃              ┃                 ┃ present and established; no overlay ┃ (iBGP to spine RRs or eBGP as per   ┃
+┃            ┃              ┃                 ┃ EVPN BGP sessions.                  ┃ design) using loopbacks and ensure  ┃
+┃            ┃              ┃                 ┃                                     ┃ policies allow EVPN NLRIs.          ┃
+┃ INFO       ┃ configurati… ┃ all             ┃ LACP not running (not configured)   ┃ Enable LACP on access/port-channel  ┃
+┃            ┃              ┃                 ┃ on all devices.                     ┃ interfaces where bonding is         ┃
+┃            ┃              ┃                 ┃                                     ┃ required; otherwise ignore.         ┃
+┗━━━━━━━━━━━━┻━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+                                                  💡 Recommendations
+╭────────────┬─────────────────┬───────────────────────────────────────────────┬─────────────────────────────────────╮
+│ Priority   │ Category        │ Description                                   │ Expected Benefit                    │
+├────────────┼─────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────┤
+│ HIGH       │ EVPN/VXLAN      │ Deploy EVPN overlay: enable protocols evpn    │ Activates the overlay, enabling     │
+│            │ overlay         │ with encapsulation vxlan, configure VTEP      │ multi-tenant L2/L3 services across  │
+│            │                 │ source (loopback), establish EVPN BGP         │ the fabric.                         │
+│            │                 │ sessions to spines (RRs), and define          │                                     │
+│            │                 │ routing-instances (instance-type evpn) with   │                                     │
+│            │                 │ VLAN-to-VNI mappings,                         │                                     │
+│            │                 │ route-distinguisher/targets, and IRB          │                                     │
+│            │                 │ interfaces for L3VNI if required.             │                                     │
+│ HIGH       │ Platform/visib… │ Resolve VXLAN CLI/feature mismatch: confirm   │ Restores operational visibility and │
+│            │                 │ correct show/operational commands for Junos   │ validates feature support prior to  │
+│            │                 │ 25.2R1.9 and ensure VXLAN/EVPN features are   │ rollout.                            │
+│            │                 │ licensed and supported on EX9214.             │                                     │
+│ MEDIUM     │ Underlay        │ Use loopbacks as BGP overlay endpoints and    │ Stable, redundant control-plane for │
+│            │ control-plane   │ advertise them in the underlay with proper    │ the overlay with deterministic      │
+│            │                 │ ECMP; ensure unique router-ids and consistent │ reachability.                       │
+│            │                 │ policies to carry EVPN AFI/SAFI.              │                                     │
+│ MEDIUM     │ Interfaces/opt… │ Investigate recent uplink flaps (ge-0/0/x on  │ Improves physical stability and     │
+│            │                 │ leaves and matching spine ports); check       │ reduces risk of transient outages.  │
+│            │                 │ optics, cables, and logs; consider enabling   │                                     │
+│            │                 │ BFD for faster failure detection once stable. │                                     │
+│ LOW        │ Access          │ If server or downstream devices require link  │ Enhanced resiliency and simplified  │
+│            │ resilience      │ aggregation, enable and standardize LACP on   │ operations on access links.         │
+│            │                 │ access interfaces.                            │                                     │
+╰────────────┴─────────────────┴───────────────────────────────────────────────┴─────────────────────────────────────╯
+
+✓ Analysis complete!
+AI Provider: OPENAI
+Raw data: fabric_data_20251022_153943.json
+Analysis: fabric_analysis_openai_20251022_153943.json
+(.venv) user@user-Standard-PC-i440FX-PIIX-1996:~/Documents/vxlan-analysis$
