@@ -961,6 +961,7 @@ Examples:
 
   # ── Ollama (remote host) ─────────────────────────────────────────────────────
   # Read remote host from environment (recommended)
+  #  env OLLAMA_HOST=0.0.0.0:11434 ollama serve
   #  Bash/Zsh:  export OLLAMA_HOST=http://192.168.1.100:11434
   #  fish:      set -gx OLLAMA_HOST http://192.168.1.100:11434
 
